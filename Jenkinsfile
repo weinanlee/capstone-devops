@@ -2,11 +2,11 @@ pipeline {
     agent any
     stages {
 
-        stage('Lint HTML') {
-            steps {
-                sh 'tidy -mq **/*.html'
-            }
-        }
+        // stage('Lint HTML') {
+        //     steps {
+        //         sh 'tidy -mq **/*.html'
+        //     }
+        // }
         
         stage('Build Docker Image') {
             steps {
