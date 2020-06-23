@@ -50,52 +50,48 @@ pipeline {
         }
 
 
-        // stage('Deploy blue container') {
-        //     steps {
-        //         withAWS(region:'us-west-2', credentials:'aws-devops') {
-        //             sh '''
-        //                 kubectl apply -f ./blue-controller.json
-        //             '''
-        //         }
-        //     }
-        // }
+        stage('Deploy blue container') {
+            steps {
+                withAWS(region:'us-west-2', credentials:'aws-devops') {
+                    sh '''
+                        kubectl apply -f ./blue-controller.json
+                    '''
+                }
+            }
+        }
 
-        // stage('Deploy green container') {
-        //     steps {
-        //         withAWS(region:'us-west-2', credentials:'aws-devops') {
-        //             sh '''
-        //                 kubectl apply -f ./green-controller.json
-        //             '''
-        //         }
-        //     }
-        // }
+        stage('Deploy green container') {
+            steps {
+                withAWS(region:'us-west-2', credentials:'aws-devops') {
+                    sh '''
+                        kubectl apply -f ./green-controller.json
+                    '''
+                }
+            }
+        }
 
 
-        // stage('Create service in cluster, redirect to green') {
-        //     steps {
-        //         withAWS(region:'us-west-2', credentials:'aws-devops') {
-        //             sh '''
-        //                 kubectl apply -f green-service.json
-        //             '''
-        //         }
-        //     }
-        // }
+        stage('Create service in cluster, redirect to green') {
+            steps {
+                withAWS(region:'us-west-2', credentials:'aws-devops') {
+                    sh '''
+                        kubectl apply -f green-service.json
+                    '''
+                }
+            }
+        }
 
-        // stage('Wait user approve') {
-        //     steps {
-        //         input "Ready to redirect traffic to blue?"
-        //     }
-        // }
 
-        // stage('Create service in cluster, redirect to blue') {
-        //     steps {
-        //         withAWS(region:'us-west-2', credentials:'aws-devops') {
-        //             sh '''
-        //                 kubectl apply -f blue-service.json
-        //             '''
-        //         }
-        //     }
-        // } 
+
+        stage('Create service in cluster, redirect to blue') {
+            steps {
+                withAWS(region:'us-west-2', credentials:'aws-devops') {
+                    sh '''
+                        kubectl apply -f blue-service.json
+                    '''
+                }
+            }
+        } 
 
 
     }
